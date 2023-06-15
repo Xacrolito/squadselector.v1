@@ -1,0 +1,59 @@
+<html> 
+<body>
+    <form>
+        Divide e nivela times considerando jogadores bons e ruins <br>
+        <label> Melhores jogadores </label>
+        <input type="text" id="text1"> 
+        <label> Piores jogadores </label>
+        <input type="text" id="text2">
+        <button type="ok" onclick=selecao()> ok </button>
+    </form>
+</body>
+<script>
+function selecao () { 
+    //retira dados da caixa de texto
+    let ak = document.getElementById("text1").value.split(","); //variavel melhor jogador//
+    let prata = document.getElementById("text2").value.split(",");//variavel pior jogaror//
+
+    let time1 = [];
+    let time2 = [];
+    let akSize = 0;
+    let prataSize = 0;
+    //script de nivelamento de dos times//
+    if (ak.length % 2 != 0 && prata.length % 2 != 0) {
+        akSize = Math.floor(ak.length / 2);
+        prataSize = Math.ceil(prata.length / 2);
+    } else {
+        akSize = ak.length / 2;
+        prataSize = prata.length / 2;
+    }
+    for (let i = 0; i < akSize; i++) {
+        let random = Math.floor(Math.random() * ak.length);
+        time1.push(ak[random]);
+        ak.splice(random, 1);
+    }
+    for (let i = 0; i < prataSize; i++) {
+        let random = Math.floor(Math.random() * prata.length);
+        time1.push(prata[random]);
+        prata.splice(random, 1);
+    }
+    for (let i = 0; i < ak.length; i++) {
+        time2.push(ak[i]);
+    }
+    for (let i = 0; i < prata.length; i++) {
+        time2.push(prata[i]);
+    }
+    //escreve resultado na tela//
+    document.write("Time 1:" + "<br>");
+    for (i = 0; i < time1.length; i++) {
+        document.write(time1[i]+"<br>");
+        
+    }
+    document.write();
+    document.write("Time 2:" + "<br>");
+    for (i = 0; i < time2.length; i++) {
+        document.write(time2[i] + "<br>");
+    }
+};
+</script>
+</html>
